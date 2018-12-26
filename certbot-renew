@@ -1,0 +1,11 @@
+#!/bin/bash
+
+certbot renew
+
+cp /etc/letsencrypt/live/metrics.putech.app/fullchain.pem /etc/grafana/fullchain.pem -f
+
+cp /etc/letsencrypt/live/metrics.putech.app/privkey.pem /etc/grafana/privkey.pem -f
+
+chgrp grafana /etc/grafana/*
+
+service grafana-server restart
